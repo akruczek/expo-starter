@@ -5,7 +5,7 @@ import { loadAssets } from './assets/load-assets';
 import AppNavigator from './App.navigation';
 
 interface Props {
-  skipLoadingScreen: () => void;
+  skipLoadingScreen?: boolean;
 }
 
 interface State {

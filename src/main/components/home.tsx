@@ -1,7 +1,7 @@
 import React from 'react';
 import { WebBrowser } from 'expo';
 import { Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Text } from 'core';
+import { Text } from '../../core/styled/text/text';
 
 export class Home extends React.Component {
   static navigationOptions = {

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import { TabBarIcon } from 'core';
 import { Home } from './components/home';
 import { Links } from './components/links';
 import { Settings } from './components/settings';
+import { TabBarIcon } from '../core/components/tab-bar-icon/tab-bar-icon';
 
 interface Props {
   focused: boolean;
