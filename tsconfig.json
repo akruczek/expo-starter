@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "core/*": [ "core/*" ]
+      "@core/*": [ "src/core/*" ]
     },
     "allowJs": false,
     "allowSyntheticDefaultImports": true,

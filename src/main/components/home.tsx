@@ -1,179 +1,70 @@
 import React from 'react';
 import { WebBrowser } from 'expo';
-import { Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Text } from '../../core/styled/text/text';
+import { Text } from '../../core/styled/text/text.styled';
+import { TEXT_SIZES } from '../../core/styled/text/text.model';
+import { Container } from '../../core/styled/container/container.styled';
+import { ScrollContainer } from '../../core/styled/scroll-container/scroll-container.styled';
+import { Image } from '../../core/styled/image/image.styled';
+import { AppContainer } from '../../core/styled/app-container/app-container';
+import { Link } from '../../core/styled/link/link.styled';
+import { Button } from 'react-native';
+import { NavigationProps } from '../../core/navigation/navigation.model';
+import { SCREENS } from '../../core/navigation/screens';
 
-export class Home extends React.Component {
+export class Home extends React.Component<NavigationProps, {}> {
+  constructor(props: NavigationProps) {
+    super(props)
+    this.handleNavigate = this.handleNavigate.bind(this);
+  }
+
   static navigationOptions = {
-    header: null,
+    title: 'Home',
   };
+
+  private expoDocsURL = 'https://docs.expo.io';
+
+  maybeRenderDevelopmentModeWarning() {
+    return __DEV__
+      ? 'Development mode is enabled, your app will be slower but you can use useful development tools.'
+      : 'You are not in development mode, your app will run at full speed.';
+  }
+
+  handleLearMorePress = () => {
+    WebBrowser.openBrowserAsync(this.expoDocsURL);
+  };
+
+  handleNavigate() {
+    this.props.navigation.navigate(SCREENS.COUNTER);
+  }
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../../../assets/images/robot-dev.png')
-                  : require('../../../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <Text style={styles.codeHighlightText}>screens/HomeScreen.js</Text>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
+      <AppContainer>
+        <ScrollContainer>
+          <Container alignItems="center" margins="40px 0 0">
+            <Image source={require('../../../assets/images/briisk-logo.png')} size={120} />
+            <Text size={TEXT_SIZES.LARGE}>
+              expo-starter
             </Text>
-          </View>
+          </Container>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
+          <Container>
+            <Text size={TEXT_SIZES.SMALL} align="center" onPress={() => console.log('x')}>
+              {this.maybeRenderDevelopmentModeWarning()}
+            </Text>
+          </Container>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
+          <Container alignItems="center" margins="10px 0 0">
+            <Link onPress={this.handleLearMorePress} size={TEXT_SIZES.REGULAR}>
+              Lear more
+            </Link>
+          </Container>
 
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <Text style={styles.codeHighlightText}>navigation/MainTabNavigator.js</Text>
-          </View>
-        </View>
-      </View>
+          <Container margins="30px 0">
+            <Button title="Go to counter" onPress={this.handleNavigate} />
+          </Container>
+        </ScrollContainer>
+      </AppContainer>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  } as any,
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
-});

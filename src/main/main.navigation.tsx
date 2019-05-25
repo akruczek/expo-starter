@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { Home } from './components/home';
 import { Links } from './components/links';
 import { Settings } from './components/settings';
 import { TabBarIcon } from '../core/components/tab-bar-icon/tab-bar-icon';
+import { ICONS } from '../core/constans/icons';
 
 interface Props {
   focused: boolean;
@@ -15,16 +15,9 @@ const HomeStack = createStackNavigator({
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'home',
   tabBarIcon: (props: Props) => (
-    <TabBarIcon
-      focused={props.focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${props.focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
+    <TabBarIcon focused={props.focused} icon={ICONS.INFORMATION_CIRCLE} />
   ),
 };
 
@@ -33,12 +26,9 @@ const LinksStack = createStackNavigator({
 });
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+  tabBarLabel: 'links',
   tabBarIcon: (props: Props) => (
-    <TabBarIcon
-      focused={props.focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
+    <TabBarIcon focused={props.focused} icon={ICONS.LINK} />
   ),
 };
 
@@ -47,16 +37,13 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'settings',
   tabBarIcon: (props: Props) => (
-    <TabBarIcon
-      focused={props.focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
+    <TabBarIcon focused={props.focused} icon={ICONS.OPTIONS} />
   ),
 };
 
-export default createBottomTabNavigator({
+export const MainTabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,

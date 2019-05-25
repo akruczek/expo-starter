@@ -1,0 +1,14 @@
+{
+  "extends": ["tslint-react", "@briisk/tslint-config"],
+  "rules": {
+    "function-name": false,
+    "variable-name": false,
+    "import-name": false,
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "jsx-indent-props": [ 2, 2 ],
+    "jsx-no-bind": false,
+    "strict-boolean-expressions": false,
+    "class-name": false
+  }
+}
