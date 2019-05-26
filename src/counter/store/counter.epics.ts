@@ -7,4 +7,4 @@ export const setCountEpic = (action: ActionsObservable<CounterActions>) => actio
   ofType(COUNTER_ACTIONS.SET_COUNT),
   pluck('payload'),
   map(setCountSuccess)
-)
+);
