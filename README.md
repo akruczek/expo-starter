@@ -12,6 +12,10 @@
 - typescript
 - ramda
 
+### Requirements:
+- node `10+`
+- npm `6+`
+
 ### Project setup:
 > npm install
 
@@ -20,6 +24,7 @@
 
 ### Start expo server for sepcific platform:
 > npm run start:android
+
 > npm run start:ios
 
 ### Run unit tests:
