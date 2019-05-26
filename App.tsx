@@ -3,6 +3,8 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { loadAssets } from './assets/load-assets';
 import AppNavigator from './App.navigation';
+import { Provider } from 'react-redux';
+import { appStore } from './src/store/configure-store';
 
 interface Props {
   skipLoadingScreen?: boolean;
@@ -31,10 +33,12 @@ export default class App extends React.Component<Props, State> {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
+        <Provider store={appStore}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            <AppNavigator />
+          </View>
+        </Provider>
       );
     }
   }
