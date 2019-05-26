@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import { Home } from './components/home';
-import { Links } from './components/links';
-import { Settings } from './components/settings';
+import { Home, Links, Settings } from './components';
 import { TabBarIcon } from '../core/components/tab-bar-icon/tab-bar-icon';
 import { ICONS } from '../core/constans/icons';
 

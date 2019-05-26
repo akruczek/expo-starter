@@ -6,5 +6,5 @@ import { COUNTER_ACTIONS, CounterActions, setCountSuccess } from './counter.acti
 export const setCountEpic = (action: ActionsObservable<CounterActions>) => action.pipe(
   ofType(COUNTER_ACTIONS.SET_COUNT),
   pluck('payload'),
-  map(setCountSuccess)
+  map(setCountSuccess),
 );
