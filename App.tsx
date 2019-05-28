@@ -5,6 +5,7 @@ import { loadAssets } from './assets/load-assets';
 import AppNavigator from './App.navigation';
 import { Provider } from 'react-redux';
 import { appStore } from './src/store/configure-store';
+import { Container } from './src/core/styled/container/container.styled';
 
 interface Props {
   skipLoadingScreen?: boolean;
@@ -20,7 +21,17 @@ export default class App extends React.Component<Props, State> {
     this.state = {
       isLoadingComplete: false,  
     };
+
+    this.loadingComplete = this.loadingComplete.bind(this);
   }
+
+  loadingError(error: any) {
+    console.error(error);
+  };
+
+  loadingComplete() {
+    this.setState({ isLoadingComplete: true });
+  };
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
@@ -28,35 +39,18 @@ export default class App extends React.Component<Props, State> {
         <AppLoading
             startAsync={loadAssets}
             onError={this.loadingError}
-            onFinish={this.loadingComplete}
+            onFinish={this.loadingComplete.bind(this)}
         />
       );
     } else {
       return (
         <Provider store={appStore}>
-          <View style={styles.container}>
+          <Container>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
             <AppNavigator />
-          </View>
+          </Container>
         </Provider>
       );
     }
   }
-
-  loadingError = (error: any) => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
-
-  loadingComplete = () => {
-    this.setState({ isLoadingComplete: true });
-  };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

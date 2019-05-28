@@ -9,6 +9,8 @@ import { Container } from '../core/styled/container/container.styled';
 import { connect } from 'react-redux';
 import { setCount } from './store/counter.actions';
 import { Dispatch, bindActionCreators } from 'redux';
+import { Guard } from '../core/components/guard/guard';
+import { GuardProps } from '../core/components/guard/guard.model';
 
 interface StateProps {
   count: number;
@@ -63,6 +65,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   dispatch,
 );
 
-export const Counter = connect<StateProps, any, DispatchProps>(
+export const Counter = connect<StateProps, DispatchProps, {}>(
   mapStateToProps, mapDispatchToProps,
 )(_Counter);
