@@ -14,6 +14,7 @@ import { GuardProps } from '../core/components/guard/guard.model';
 
 interface StateProps {
   count: number;
+  guard: boolean;
 }
 
 interface DispatchProps {
@@ -38,26 +39,29 @@ class _Counter extends React.Component<ComponentProps, {}> {
 
   render() {
     return (
-      <AppContainer>
-        <Container justifyContent="center">
-          <Text align="center">This is basic counter. Count value is stored in redux-store.</Text>
-          <Text align="center">Increment and decrement trigger redux action which change redux-store</Text>
-        </Container>
+      <Guard navigation={this.props.navigation} guard={this.props.guard} redirectTo="Home">
+        <AppContainer>
+          <Container justifyContent="center">
+            <Text align="center">This is basic counter. Count value is stored in redux-store.</Text>
+            <Text align="center">Increment and decrement trigger redux action which change redux-store</Text>
+          </Container>
 
-        <Container flexDirection="row" justifyContent="space-around" alignItems="center">
-          <Button title=" - " onPress={() => this.handleChangeCount(-1)} />
-          <Text>{this.props.count}</Text>
-          <Button title=" + " onPress={() => this.handleChangeCount(1)} />
-        </Container>
+          <Container flexDirection="row" justifyContent="space-around" alignItems="center">
+            <Button title=" - " onPress={() => this.handleChangeCount(-1)} />
+            <Text>{this.props.count}</Text>
+            <Button title=" + " onPress={() => this.handleChangeCount(1)} />
+          </Container>
 
-        <Button title="Back to Main Component" onPress={this.handleNavigate} />
-      </AppContainer>
+          <Button title="Back to Main Component" onPress={this.handleNavigate} />
+        </AppContainer>
+      </Guard>
     );
   }
 }
 
 const mapStateToProps = R.applySpec<StateProps>({
   count: R.path([ 'counter', 'model', 'count' ]),
+  guard: R.path([ 'main', 'model', 'hasAccess' ]),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(

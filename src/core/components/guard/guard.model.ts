@@ -1,11 +1,8 @@
-import { SCREENS } from '../../navigation/screens';
-import { NavigationProps } from '../../navigation/navigation.model';
+import { NavigationScreenProp } from 'react-navigation';
 
-export interface GuardProps extends NavigationProps {
-  counterAccess: boolean;
-}
-
-export interface GuardModel {
-  hasAccess: boolean;
-  redirectTo: string;
+export interface GuardProps {
+  guard: boolean;
+  redirectTo?: string;
+  navigation?: NavigationScreenProp<any, any>;
+  children: any;
 }
