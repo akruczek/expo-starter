@@ -49,7 +49,7 @@ export class Home extends React.Component<NavigationProps, {}> {
           </Container>
 
           <Container>
-            <Text size={TEXT_SIZES.SMALL} align="center" onPress={() => console.log('x')}>
+            <Text size={TEXT_SIZES.SMALL} align="center">
               {this.maybeRenderDevelopmentModeWarning()}
             </Text>
           </Container>

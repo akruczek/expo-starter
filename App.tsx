@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import * as R from 'ramda';
+import { Platform, StatusBar } from 'react-native';
 import { AppLoading } from 'expo';
 import { loadAssets } from './assets/load-assets';
-import AppNavigator from './App.navigation';
+import { AppNavigator } from './App.navigation';
 import { Provider } from 'react-redux';
 import { appStore } from './src/store/configure-store';
 import { Container } from './src/core/styled/container/container.styled';
+import { isPlatform } from './src/core/helpers/is-platform';
+import { ifElse } from './src/core/helpers/ramda';
 
 interface Props {
   skipLoadingScreen?: boolean;
@@ -25,32 +28,32 @@ export default class App extends React.Component<Props, State> {
     this.loadingComplete = this.loadingComplete.bind(this);
   }
 
+  isLoading() {
+    return !this.state.isLoadingComplete && !this.props.skipLoadingScreen;
+  }
+  
   loadingError(error: any) {
     console.error(error);
   };
-
+  
   loadingComplete() {
     this.setState({ isLoadingComplete: true });
   };
 
   render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      return (
-        <AppLoading
-            startAsync={loadAssets}
-            onError={this.loadingError}
-            onFinish={this.loadingComplete.bind(this)}
-        />
-      );
-    } else {
-      return (
-        <Provider store={appStore}>
-          <Container>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <AppNavigator />
-          </Container>
-        </Provider>
-      );
-    }
+    return ifElse(
+      this.isLoading(),
+      <AppLoading
+          startAsync={loadAssets}
+          onError={this.loadingError}
+          onFinish={this.loadingComplete.bind(this)}
+      />,
+      <Provider store={appStore}>
+        <Container>
+          {isPlatform('ios') && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </Container>
+      </Provider>,
+    );
   }
 }
