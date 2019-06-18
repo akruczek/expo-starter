@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { setCount } from './store/counter.actions';
 import { Dispatch, bindActionCreators } from 'redux';
 import { Guard } from '../core/components/guard/guard';
-import { GuardProps } from '../core/components/guard/guard.model';
 
 interface StateProps {
   count: number;
@@ -38,17 +37,28 @@ class _Counter extends React.Component<ComponentProps, {}> {
   }
 
   render() {
+    const { guard, navigation, count } = this.props;
+
     return (
-      <Guard navigation={this.props.navigation} guard={this.props.guard} redirectTo="Home">
+      <Guard navigation={navigation} guard={guard} redirectTo="Home">
         <AppContainer>
           <Container justifyContent="center">
-            <Text align="center">This is basic counter. Count value is stored in redux-store.</Text>
-            <Text align="center">Increment and decrement trigger redux action which change redux-store</Text>
+            <Text align="center">
+              This is basic counter. Count value is stored in redux-store.
+            </Text>
+
+            <Text align="center">
+              Increment and decrement trigger redux action which change redux-store
+            </Text>
           </Container>
 
           <Container flexDirection="row" justifyContent="space-around" alignItems="center">
             <Button title=" - " onPress={() => this.handleChangeCount(-1)} />
-            <Text>{this.props.count}</Text>
+
+            <Text>
+              {count}
+            </Text>
+
             <Button title=" + " onPress={() => this.handleChangeCount(1)} />
           </Container>
 

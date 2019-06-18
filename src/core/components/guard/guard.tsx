@@ -6,7 +6,7 @@ import { NavigationScreenProp } from 'react-navigation';
 
 export class Guard extends React.Component<GuardProps, {}> {
   shouldComponentUpdate(nextProps: GuardProps) {
-    return !R.eqProps('guard', this.props, nextProps);
+    return !(!this.props.guard && !nextProps.guard);
   }
 
   guard() {
