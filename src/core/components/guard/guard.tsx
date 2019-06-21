@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import { GuardProps } from './guard.model';
-import { isPresent } from '../../helpers/ramda';
+import { isPresent } from '../../helpers';
 import { NavigationScreenProp } from 'react-navigation';
 
 export class Guard extends React.Component<GuardProps, {}> {

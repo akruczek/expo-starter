@@ -3,7 +3,7 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
 import { Text } from '../text/text.styled';
 import { TextProps } from 'react-native';
-import { colors } from '../../constans/colors';
+import { colors } from '../../constants/colors';
 import { TEXT_SIZES } from '../text/text.model';
 
 interface Props {

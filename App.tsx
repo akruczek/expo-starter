@@ -7,8 +7,7 @@ import { AppNavigator } from './App.navigation';
 import { Provider } from 'react-redux';
 import { appStore } from './src/store/configure-store';
 import { Container } from './src/core/styled/container/container.styled';
-import { isPlatform } from './src/core/helpers/is-platform';
-import { ifElse } from './src/core/helpers/ramda';
+import { ifElse, isPlatform } from './src/core/helpers';
 
 interface Props {
   skipLoadingScreen?: boolean;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { Home, Links, Settings } from './components';
 import { TabBarIcon } from '../core/components/tab-bar-icon/tab-bar-icon';
-import { ICONS } from '../core/constans/icons';
+import { ICONS } from '../core/constants/icons';
 
 interface Props {
   focused: boolean;
