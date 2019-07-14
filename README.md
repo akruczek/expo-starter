@@ -2,8 +2,8 @@
 
 ### Most important technologies stack:
 - react-native `0.59`
-- expo `32`
-- react `16.5`
+- expo `33`
+- react `16.8`
 - react-redux `6`
 - redux `4`
 - rxjs `6`
