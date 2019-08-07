@@ -1,4 +1,5 @@
-import { Asset, Font } from 'expo';
+import * as Font from 'expo-font';
+import { Asset } from 'expo-asset';
 
 export const loadAssets = async (): Promise<any> => {
   return Promise.all([

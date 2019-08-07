@@ -1,6 +1,5 @@
 import * as React from 'react';
-import * as R from 'ramda';
-import { Platform, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { AppLoading } from 'expo';
 import { loadAssets } from './assets/load-assets';
 import { AppNavigator } from './App.navigation';

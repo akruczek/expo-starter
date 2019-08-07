@@ -3,12 +3,12 @@
     "name": "expo-starter",
     "slug": "starter-expo",
     "privacy": "public",
-    "sdkVersion": "33.0.0",
+    "sdkVersion": "34.0.0",
     "platforms": [
       "ios",
       "android"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/briisk-logo.png",
     "splash": {
