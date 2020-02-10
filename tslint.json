@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint-react", "@briisk/tslint-config"],
+  "extends": ["tslint-react"],
   "rules": {
     "function-name": false,
     "variable-name": false,
@@ -9,6 +9,7 @@
     "jsx-indent-props": [ 2, 2 ],
     "jsx-no-bind": false,
     "strict-boolean-expressions": false,
-    "class-name": false
+    "class-name": false,
+    "jsx-wrap-multiline": false
   }
 }

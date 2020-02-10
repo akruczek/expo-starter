@@ -15,29 +15,19 @@ interface DispatchProps {
   toggleCounterAccess: () => void;
 }
 
-export class _Settings extends React.Component<StateProps & DispatchProps, {}> {
-  static navigationOptions = {
-    title: 'Settings',
-  };
+export const _Settings = ({ toggleCounterAccess, hasAccess }: StateProps & DispatchProps) => (
+  <AppContainer>
+    <Text>here you can give yourself access to Counter screen</Text>
 
-  render() {
-    const { hasAccess } = this.props;
-
-    return (
-      <AppContainer>
-        <Text>here you can give yourself access to Counter screen</Text>
-
-        <Container margins="30px 0 0">
-          <Button
-              onPress={this.props.toggleCounterAccess}
-              title={`Counter access: ${hasAccess ? 'Yes' : 'No'}`}
-              color={hasAccess ? 'green' : 'red'}
-          />
-        </Container>
-      </AppContainer>
-    );
-  }
-}
+    <Container margins="30px 0 0">
+      <Button
+          onPress={() => toggleCounterAccess()}
+          title={`Counter access: ${hasAccess ? 'Yes' : 'No'}`}
+          color={hasAccess ? 'green' : 'red'}
+      />
+    </Container>
+  </AppContainer>
+)
 
 const mapStateToProps = R.applySpec<StateProps>({
   hasAccess: R.path([ 'main', 'model', 'hasAccess' ]),

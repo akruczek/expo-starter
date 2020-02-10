@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StatusBar } from 'react-native';
 import { AppLoading } from 'expo';
+import { enableScreens } from 'react-native-screens';
 import { loadAssets } from './assets/load-assets';
 import { AppNavigator } from './App.navigation';
 import { Provider } from 'react-redux';
@@ -15,6 +16,8 @@ interface Props {
 interface State {
   isLoadingComplete: boolean;
 }
+
+enableScreens();
 
 export default class App extends React.Component<Props, State> {
   constructor(props: Props & State) {

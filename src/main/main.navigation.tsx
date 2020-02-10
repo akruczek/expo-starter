@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Links, Settings } from './components';
 import { TabBarIcon } from '../core/components/tab-bar-icon/tab-bar-icon';
 import { ICONS } from '../core/constants/icons';
@@ -8,41 +8,29 @@ interface Props {
   focused: boolean;
 }
 
-const HomeStack = createStackNavigator({
-  Home,
-});
+const navigationOptions = (tabBarLabel: string, icon: string) => ({
+  tabBarLabel,
+  tabBarIcon: ({ focused }: Props) => <TabBarIcon {...{ focused, icon }} />,
+})
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'home',
-  tabBarIcon: (props: Props) => (
-    <TabBarIcon focused={props.focused} icon={ICONS.INFORMATION_CIRCLE} />
-  ),
-};
+const Tab = createBottomTabNavigator()
 
-const LinksStack = createStackNavigator({
-  Links,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'links',
-  tabBarIcon: (props: Props) => (
-    <TabBarIcon focused={props.focused} icon={ICONS.LINK} />
-  ),
-};
-
-const SettingsStack = createStackNavigator({
-  Settings,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'settings',
-  tabBarIcon: (props: Props) => (
-    <TabBarIcon focused={props.focused} icon={ICONS.OPTIONS} />
-  ),
-};
-
-export const MainTabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+export const MainTabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen
+        name="Home"
+        options={navigationOptions('home', ICONS.INFORMATION_CIRCLE)}
+        component={Home}
+    />
+    <Tab.Screen
+        name="Links"
+        options={navigationOptions('links', ICONS.LINK)}
+        component={Links}
+    />
+    <Tab.Screen
+        name="Settings"
+        options={navigationOptions('settings', ICONS.OPTIONS)}
+        component={Settings}
+    />
+  </Tab.Navigator>
+)

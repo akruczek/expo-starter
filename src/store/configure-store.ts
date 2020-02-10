@@ -7,9 +7,7 @@ declare const window: any;
 
 function configureStore() {
   const epicMiddleware = createEpicMiddleware();
-
   const middleware = applyMiddleware(epicMiddleware);
-
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const store = createStore(

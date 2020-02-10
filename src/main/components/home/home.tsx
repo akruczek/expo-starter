@@ -11,60 +11,45 @@ import { Button } from 'react-native';
 import { NavigationProps } from '../../../core/navigation/navigation.model';
 import { SCREENS } from '../../../core/navigation/screens';
 
-export class Home extends React.Component<NavigationProps, {}> {
-  constructor(props: NavigationProps) {
-    super(props)
-    this.handleNavigate = this.handleNavigate.bind(this);
-  }
+export const Home = ({ navigation }: NavigationProps) => {
+  const maybeRenderDevelopmentModeWarning = () => __DEV__
+    ? 'Development mode is enabled, your app will be slower but you can use useful development tools.'
+    : 'You are not in development mode, your app will run at full speed.';
 
-  static navigationOptions = {
-    title: 'Home',
+  const handleLearMorePress = () => {
+    WebBrowser.openBrowserAsync('https://docs.expo.io');
   };
 
-  private expoDocsURL = 'https://docs.expo.io';
-
-  maybeRenderDevelopmentModeWarning() {
-    return __DEV__
-      ? 'Development mode is enabled, your app will be slower but you can use useful development tools.'
-      : 'You are not in development mode, your app will run at full speed.';
+  const handleNavigate = () => {
+    navigation.navigate(SCREENS.COUNTER);
   }
 
-  handleLearMorePress = () => {
-    WebBrowser.openBrowserAsync(this.expoDocsURL);
-  };
+  return (
+    <AppContainer>
+      <ScrollContainer>
+        <Container alignItems="center" margins="40px 0 0">
+          <Image source={require('../../../../assets/images/logo.png')} size={120} />
+          <Text size={TEXT_SIZES.LARGE}>
+            expo-starter
+          </Text>
+        </Container>
 
-  handleNavigate() {
-    this.props.navigation.navigate(SCREENS.COUNTER);
-  }
+        <Container>
+          <Text size={TEXT_SIZES.SMALL} align="center">
+            {maybeRenderDevelopmentModeWarning()}
+          </Text>
+        </Container>
 
-  render() {
-    return (
-      <AppContainer>
-        <ScrollContainer>
-          <Container alignItems="center" margins="40px 0 0">
-            <Image source={require('../../../../assets/images/briisk-logo.png')} size={120} />
-            <Text size={TEXT_SIZES.LARGE}>
-              expo-starter
-            </Text>
-          </Container>
+        <Container alignItems="center" margins="10px 0 0">
+          <Link onPress={handleLearMorePress} size={TEXT_SIZES.REGULAR}>
+            Lear more
+          </Link>
+        </Container>
 
-          <Container>
-            <Text size={TEXT_SIZES.SMALL} align="center">
-              {this.maybeRenderDevelopmentModeWarning()}
-            </Text>
-          </Container>
-
-          <Container alignItems="center" margins="10px 0 0">
-            <Link onPress={this.handleLearMorePress} size={TEXT_SIZES.REGULAR}>
-              Lear more
-            </Link>
-          </Container>
-
-          <Container margins="30px 0">
-            <Button title="Go to counter" onPress={this.handleNavigate} />
-          </Container>
-        </ScrollContainer>
-      </AppContainer>
-    );
-  }
-}
+        <Container margins="30px 0">
+          <Button title="Go to counter" onPress={handleNavigate} />
+        </Container>
+      </ScrollContainer>
+    </AppContainer>
+  );
+};

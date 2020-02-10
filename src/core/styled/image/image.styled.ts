@@ -7,6 +7,6 @@ interface Props {
 }
 
 export const Image = styled.Image<Props & ImageProps>`
-  max-width: ${R.propOr('auto', 'size')};
-  max-height: ${R.propOr('auto', 'size')};
+  max-width: ${R.propOr('auto', 'size')}px;
+  max-height: ${R.propOr('auto', 'size')}px;
 `;
