@@ -1,7 +1,7 @@
 import React from 'react';
+import * as R from 'ramda';
 import { FlatList } from 'react-native';
 import { AppContainer } from '../../../core/styled/app-container/app-container';
-import { ScrollContainer } from '../../../core/styled/scroll-container/scroll-container.styled';
 import { LinkItemModel } from './models/link-item.models';
 import { Text } from '../../../core/styled/text/text.styled';
 import { LinkItem } from './components/link-item';
@@ -15,18 +15,17 @@ export const Links = () => {
 
   return (
     <AppContainer>
-      <ScrollContainer>
-        <Container margins="0 0 20px">
-          <Text>
-            Learn more about expo and react-native:
-          </Text>
-        </Container>
+      <Container margins="0 0 20px">
+        <Text>
+          Learn more about expo and react-native:
+        </Text>
 
         <FlatList
             data={links}
+            keyExtractor={R.prop('key')}
             renderItem={({ item }) => <LinkItem {...item} />}
         />
-      </ScrollContainer>
+      </Container>
     </AppContainer>
   );
 };

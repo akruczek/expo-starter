@@ -1,5 +1,5 @@
 import React from 'react';
-import { WebBrowser } from 'expo';
+import * as WebBrowser from 'expo-web-browser';
 import { Text } from '../../../core/styled/text/text.styled';
 import { TEXT_SIZES } from '../../../core/styled/text/text.model';
 import { Container } from '../../../core/styled/container/container.styled';

@@ -22,52 +22,43 @@ interface DispatchProps {
 
 type ComponentProps = NavigationProps & StateProps & DispatchProps;
 
-class _Counter extends React.Component<ComponentProps, {}> {
-  constructor(props: ComponentProps) {
-    super(props);
-    this.handleNavigate = this.handleNavigate.bind(this);
+export const _Counter = ({ navigation, count, guard, setCount }: ComponentProps) => {
+  const [ value, setValue ] = React.useState(count);
+
+  const handleNavigate = () => {
+    navigation.navigate(SCREENS.MAIN);
   }
 
-  handleNavigate() {
-    this.props.navigation.navigate(SCREENS.MAIN);
+  const handleSetValue = (increment: number) => {
+    const newValue = value + increment;
+    setValue(newValue);
+    setCount(newValue);
   }
 
-  handleChangeCount(change: number) {
-    this.props.setCount(this.props.count + change);
-  }
+  return React.useMemo(() => (
+    <Guard navigation={navigation} guard={guard} redirectTo="Home">
+      <AppContainer>
+        <Container justifyContent="center">
+          <Text align="center">
+            This is basic counter. Count value is stored in redux-store.
+          </Text>
 
-  render() {
-    const { guard, navigation, count } = this.props;
+          <Text align="center">
+            Increment and decrement trigger redux action which change redux-store
+          </Text>
+        </Container>
 
-    return (
-      <Guard navigation={navigation} guard={guard} redirectTo="Home">
-        <AppContainer>
-          <Container justifyContent="center">
-            <Text align="center">
-              This is basic counter. Count value is stored in redux-store.
-            </Text>
+        <Container flexDirection="row" justifyContent="space-around" alignItems="center">
+          <Button title=" - " onPress={() => handleSetValue(-1)} />
+          <Text>{value}</Text>
+          <Button title=" + " onPress={() => handleSetValue(1)} />
+        </Container>
 
-            <Text align="center">
-              Increment and decrement trigger redux action which change redux-store
-            </Text>
-          </Container>
-
-          <Container flexDirection="row" justifyContent="space-around" alignItems="center">
-            <Button title=" - " onPress={() => this.handleChangeCount(-1)} />
-
-            <Text>
-              {count}
-            </Text>
-
-            <Button title=" + " onPress={() => this.handleChangeCount(1)} />
-          </Container>
-
-          <Button title="Back to Main Component" onPress={this.handleNavigate} />
-        </AppContainer>
-      </Guard>
-    );
-  }
-}
+        <Button title="Back to Main Component" onPress={handleNavigate} />
+      </AppContainer>
+    </Guard>
+  ), [ value ]);
+};
 
 const mapStateToProps = R.applySpec<StateProps>({
   count: R.path([ 'counter', 'model', 'count' ]),
