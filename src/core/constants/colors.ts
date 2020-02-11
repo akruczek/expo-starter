@@ -11,5 +11,6 @@ export const colors = {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  link: '#2e78b7'
+  link: '#2e78b7',
+  blue: 'blue',
 };

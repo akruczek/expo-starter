@@ -1,11 +1,12 @@
 import React from 'react';
 import * as R from 'ramda';
-import { Text, Button } from 'react-native';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
-import { AppContainer } from '../../../core/styled/app-container/app-container';
+import { AppContainer } from '@core/styled/app-container/app-container';
+import { Container } from '@core/styled/container/container.styled';
+import { Button } from '@core/styled/button/button';
 import { toggleCounterAccess } from '../../store/main.actions';
-import { Container } from '../../../core/styled/container/container.styled';
 
 interface StateProps {
   hasAccess: boolean;

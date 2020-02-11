@@ -1,8 +1,6 @@
 import * as R from 'ramda';
-import { Action } from 'redux';
 import { MainStateModel } from '../models/main.models';
 import { ToggleCounterAccessAction, MAIN_ACTIONS, MainActions } from './main.actions';
-import { SetCountAction } from '../../counter/store/counter.actions';
 
 const initialState: MainStateModel = {
   isPending: false,

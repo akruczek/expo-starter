@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as R from 'ramda';
-import { Text } from '../core/styled/text/text.styled';
-import { NavigationProps } from '../core/navigation/navigation.model';
-import { AppContainer } from '../core/styled/app-container/app-container';
-import { Button } from 'react-native';
-import { SCREENS } from '../core/navigation/screens';
-import { Container } from '../core/styled/container/container.styled';
 import { connect } from 'react-redux';
-import { setCount } from './store/counter.actions';
 import { Dispatch, bindActionCreators } from 'redux';
-import { Guard } from '../core/components/guard/guard';
+import { Text } from '@core/styled/text/text.styled';
+import { NavigationProps } from '@core/navigation/navigation.model';
+import { AppContainer } from '@core/styled/app-container/app-container';
+import { SCREENS } from '@core/navigation/screens';
+import { Container } from '@core/styled/container/container.styled';
+import { Guard } from '@core/components/guard/guard';
+import { Button } from '@core/styled/button/button';
+import { setCount } from './store/counter.actions';
 
 interface StateProps {
   count: number;

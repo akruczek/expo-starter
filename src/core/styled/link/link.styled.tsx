@@ -15,10 +15,10 @@ const StyledLink = styled(Text)`
   color: ${colors.link};
 `;
 
-export const Link = (props: TouchableOpacityProps & Props & TextProps) => (
-  <TouchableOpacity onPress={props.onPress}>
+export const Link = ({ children, onPress }: TouchableOpacityProps & Props & TextProps) => (
+  <TouchableOpacity {...{ onPress }}>
     <StyledLink>
-      {props.children}
+      {children}
     </StyledLink>
   </TouchableOpacity>
 );

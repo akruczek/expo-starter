@@ -1,11 +1,11 @@
 import React from 'react';
 import * as R from 'ramda';
 import { FlatList } from 'react-native';
-import { AppContainer } from '../../../core/styled/app-container/app-container';
+import { AppContainer } from '@core/styled/app-container/app-container';
+import { Text } from '@core/styled/text/text.styled';
+import { Container } from '@core/styled/container/container.styled';
 import { LinkItemModel } from './models/link-item.models';
-import { Text } from '../../../core/styled/text/text.styled';
 import { LinkItem } from './components/link-item';
-import { Container } from '../../../core/styled/container/container.styled';
 
 export const Links = () => {
   const links: LinkItemModel[] = [

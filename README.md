@@ -31,6 +31,7 @@
   - android: Scan QR code via Expo app
   - iOS: Scan QR code via Camera app and allow to open via Expo app
 - Wait until building JavaScript bundle is finished
+- If you want to run app with full performance switch `Production mode` in Expo DevTools and reload
 
 ### Run unit tests:
 > npm test

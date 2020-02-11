@@ -1,15 +1,16 @@
 import React from 'react';
 import * as WebBrowser from 'expo-web-browser';
-import { Text } from '../../../core/styled/text/text.styled';
-import { TEXT_SIZES } from '../../../core/styled/text/text.model';
-import { Container } from '../../../core/styled/container/container.styled';
-import { ScrollContainer } from '../../../core/styled/scroll-container/scroll-container.styled';
-import { Image } from '../../../core/styled/image/image.styled';
-import { AppContainer } from '../../../core/styled/app-container/app-container';
-import { Link } from '../../../core/styled/link/link.styled';
-import { Button } from 'react-native';
-import { NavigationProps } from '../../../core/navigation/navigation.model';
-import { SCREENS } from '../../../core/navigation/screens';
+import { View } from 'react-native';
+import { Text } from '@core/styled/text/text.styled';
+import { TEXT_SIZES } from '@core/styled/text/text.model';
+import { Container } from '@core/styled/container/container.styled';
+import { ScrollContainer } from '@core/styled/scroll-container/scroll-container.styled';
+import { Image } from '@core/styled/image/image.styled';
+import { AppContainer } from '@core/styled/app-container/app-container';
+import { Link } from '@core/styled/link/link.styled';
+import { NavigationProps } from '@core/navigation/navigation.model';
+import { SCREENS } from '@core/navigation/screens';
+import { Button } from '@core/styled/button/button';
 
 export const Home = ({ navigation }: NavigationProps) => {
   const maybeRenderDevelopmentModeWarning = () => __DEV__
@@ -42,12 +43,14 @@ export const Home = ({ navigation }: NavigationProps) => {
 
         <Container alignItems="center" margins="10px 0 0">
           <Link onPress={handleLearMorePress} size={TEXT_SIZES.REGULAR}>
-            Lear more
+            Learn more
           </Link>
         </Container>
 
         <Container margins="30px 0">
-          <Button title="Go to counter" onPress={handleNavigate} />
+          <View style={{ backgroundColor: 'blue' }}>
+            <Button title="Go to counter" onPress={handleNavigate} />
+          </View>
         </Container>
       </ScrollContainer>
     </AppContainer>
